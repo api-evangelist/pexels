@@ -8,9 +8,8 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Photos
-  - Videos
   - Stock Media
-  - API
+  - Videos
 url: >-
   https://raw.githubusercontent.com/api-evangelist/pexels/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -26,8 +25,8 @@ apis:
     baseURL: https://api.pexels.com/v1
     tags:
       - Photos
-      - Videos
       - Stock Media
+      - Videos
     properties:
       - type: Documentation
         url: https://www.pexels.com/api/documentation/
