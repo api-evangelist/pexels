@@ -5,9 +5,9 @@ Give your users access to the entire Pexels photo and video library without leav
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
+- **Type:** Index
+- **Position:** Consuming
+- **Access:** 3rd-Party
 
 ## Tags:
 
@@ -15,8 +15,8 @@ Give your users access to the entire Pexels photo and video library without leav
 
 ## Timestamps
 
-- **Created:** 2026-03-16 
-- **Modified:** 2026-03-16 
+- **Created:** 2026-03-16
+- **Modified:** 2026-04-28
 
 ## APIs
 
@@ -25,6 +25,7 @@ Free image and video API providing access to Pexels photo and video library for 
 
 **Human URL:** [https://www.pexels.com/api/](https://www.pexels.com/api/)
 
+**Base URL:** `https://api.pexels.com/v1`
 
 #### Tags:
 
@@ -35,6 +36,7 @@ Free image and video API providing access to Pexels photo and video library for 
 - [Documentation](https://www.pexels.com/api/documentation/)
 - [Getting Started](https://www.pexels.com/api/)
 - [Authentication](https://www.pexels.com/api/documentation/#authorization)
+- [OpenAPI](openapi/pexels-openapi.yml)
 
 ## Common Properties
 
