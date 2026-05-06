@@ -1,0 +1,585 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Pexels API
+  description: The Pexels API provides programmatic access to Pexels' free stock photo and video library, plus curated collections.
+    Use it to search photos and videos, fetch curated and popular media, and integrate Pexels content into apps and websites.
+  tags:
+  - Pexels
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: pexels
+    baseUri: https://api.pexels.com/v1
+    description: Pexels API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: Authorization
+      value: '{{PEXELS_TOKEN}}'
+    resources:
+    - name: search
+      path: /search
+      operations:
+      - name: searchphotos
+        method: GET
+        description: Search Photos
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+          description: Search keyword such as "Ocean" or "Tigers".
+        - name: orientation
+          in: query
+          type: string
+        - name: size
+          in: query
+          type: string
+        - name: color
+          in: query
+          type: string
+        - name: locale
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: per_page
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: curated
+      path: /curated
+      operations:
+      - name: getcuratedphotos
+        method: GET
+        description: Curated Photos
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: per_page
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: photos-id
+      path: /photos/{id}
+      operations:
+      - name: getphoto
+        method: GET
+        description: Get Photo
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: videos-search
+      path: /videos/search
+      operations:
+      - name: searchvideos
+        method: GET
+        description: Search Videos
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        - name: orientation
+          in: query
+          type: string
+        - name: size
+          in: query
+          type: string
+        - name: locale
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: per_page
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: videos-popular
+      path: /videos/popular
+      operations:
+      - name: getpopularvideos
+        method: GET
+        description: Popular Videos
+        inputParameters:
+        - name: min_width
+          in: query
+          type: integer
+        - name: min_height
+          in: query
+          type: integer
+        - name: min_duration
+          in: query
+          type: integer
+        - name: max_duration
+          in: query
+          type: integer
+        - name: page
+          in: query
+          type: integer
+        - name: per_page
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: videos-videos-id
+      path: /videos/videos/{id}
+      operations:
+      - name: getvideo
+        method: GET
+        description: Get Video
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: collections-featured
+      path: /collections/featured
+      operations:
+      - name: getfeaturedcollections
+        method: GET
+        description: Featured Collections
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: per_page
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: collections
+      path: /collections
+      operations:
+      - name: getmycollections
+        method: GET
+        description: My Collections
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: per_page
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: collections-id
+      path: /collections/{id}
+      operations:
+      - name: getcollectionmedia
+        method: GET
+        description: Collection Media
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: type
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: per_page
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: pexels-rest
+    description: REST adapter for Pexels API.
+    resources:
+    - path: /search
+      name: searchphotos
+      operations:
+      - method: GET
+        name: searchphotos
+        description: Search Photos
+        call: pexels.searchphotos
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /curated
+      name: getcuratedphotos
+      operations:
+      - method: GET
+        name: getcuratedphotos
+        description: Curated Photos
+        call: pexels.getcuratedphotos
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /photos/{id}
+      name: getphoto
+      operations:
+      - method: GET
+        name: getphoto
+        description: Get Photo
+        call: pexels.getphoto
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /videos/search
+      name: searchvideos
+      operations:
+      - method: GET
+        name: searchvideos
+        description: Search Videos
+        call: pexels.searchvideos
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /videos/popular
+      name: getpopularvideos
+      operations:
+      - method: GET
+        name: getpopularvideos
+        description: Popular Videos
+        call: pexels.getpopularvideos
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /videos/videos/{id}
+      name: getvideo
+      operations:
+      - method: GET
+        name: getvideo
+        description: Get Video
+        call: pexels.getvideo
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /collections/featured
+      name: getfeaturedcollections
+      operations:
+      - method: GET
+        name: getfeaturedcollections
+        description: Featured Collections
+        call: pexels.getfeaturedcollections
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /collections
+      name: getmycollections
+      operations:
+      - method: GET
+        name: getmycollections
+        description: My Collections
+        call: pexels.getmycollections
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /collections/{id}
+      name: getcollectionmedia
+      operations:
+      - method: GET
+        name: getcollectionmedia
+        description: Collection Media
+        call: pexels.getcollectionmedia
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: pexels-mcp
+    transport: http
+    description: MCP adapter for Pexels API for AI agent use.
+    tools:
+    - name: searchphotos
+      description: Search Photos
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pexels.searchphotos
+      with:
+        query: tools.query
+        orientation: tools.orientation
+        size: tools.size
+        color: tools.color
+        locale: tools.locale
+        page: tools.page
+        per_page: tools.per_page
+      inputParameters:
+      - name: query
+        type: string
+        description: Search keyword such as "Ocean" or "Tigers".
+        required: true
+      - name: orientation
+        type: string
+        description: orientation
+      - name: size
+        type: string
+        description: size
+      - name: color
+        type: string
+        description: color
+      - name: locale
+        type: string
+        description: locale
+      - name: page
+        type: integer
+        description: page
+      - name: per_page
+        type: integer
+        description: per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcuratedphotos
+      description: Curated Photos
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pexels.getcuratedphotos
+      with:
+        page: tools.page
+        per_page: tools.per_page
+      inputParameters:
+      - name: page
+        type: integer
+        description: page
+      - name: per_page
+        type: integer
+        description: per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getphoto
+      description: Get Photo
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pexels.getphoto
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: searchvideos
+      description: Search Videos
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pexels.searchvideos
+      with:
+        query: tools.query
+        orientation: tools.orientation
+        size: tools.size
+        locale: tools.locale
+        page: tools.page
+        per_page: tools.per_page
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+        required: true
+      - name: orientation
+        type: string
+        description: orientation
+      - name: size
+        type: string
+        description: size
+      - name: locale
+        type: string
+        description: locale
+      - name: page
+        type: integer
+        description: page
+      - name: per_page
+        type: integer
+        description: per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpopularvideos
+      description: Popular Videos
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pexels.getpopularvideos
+      with:
+        min_width: tools.min_width
+        min_height: tools.min_height
+        min_duration: tools.min_duration
+        max_duration: tools.max_duration
+        page: tools.page
+        per_page: tools.per_page
+      inputParameters:
+      - name: min_width
+        type: integer
+        description: min_width
+      - name: min_height
+        type: integer
+        description: min_height
+      - name: min_duration
+        type: integer
+        description: min_duration
+      - name: max_duration
+        type: integer
+        description: max_duration
+      - name: page
+        type: integer
+        description: page
+      - name: per_page
+        type: integer
+        description: per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getvideo
+      description: Get Video
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pexels.getvideo
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getfeaturedcollections
+      description: Featured Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pexels.getfeaturedcollections
+      with:
+        page: tools.page
+        per_page: tools.per_page
+      inputParameters:
+      - name: page
+        type: integer
+        description: page
+      - name: per_page
+        type: integer
+        description: per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getmycollections
+      description: My Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pexels.getmycollections
+      with:
+        page: tools.page
+        per_page: tools.per_page
+      inputParameters:
+      - name: page
+        type: integer
+        description: page
+      - name: per_page
+        type: integer
+        description: per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcollectionmedia
+      description: Collection Media
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pexels.getcollectionmedia
+      with:
+        id: tools.id
+        type: tools.type
+        sort: tools.sort
+        page: tools.page
+        per_page: tools.per_page
+      inputParameters:
+      - name: id
+        type: string
+        description: id
+        required: true
+      - name: type
+        type: string
+        description: type
+      - name: sort
+        type: string
+        description: sort
+      - name: page
+        type: integer
+        description: page
+      - name: per_page
+        type: integer
+        description: per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    PEXELS_TOKEN: PEXELS_TOKEN
