@@ -1,7 +1,8 @@
 aid: pexels
 name: Pexels
-description: Give your users access to the entire Pexels photo and video library without leaving your app or website. The
-  Pexels API is free and seamlessly integrates with just a few lines of code.
+description: >-
+  Give your users access to the entire Pexels photo and video library without leaving your app or website. The Pexels
+  API is free and seamlessly integrates with just a few lines of code.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
@@ -19,24 +20,18 @@ apis:
     humanURL: https://www.pexels.com/api/
     baseURL: https://api.pexels.com/v1
     tags:
-    - Photos
-    - Stock Media
-    - Videos
+      - Photos
+      - Stock Media
+      - Videos
     properties:
-    - type: Documentation
-      url: https://www.pexels.com/api/documentation/
-    - type: GettingStarted
-      url: https://www.pexels.com/api/
-    - type: Authentication
-      url: https://www.pexels.com/api/documentation/#authorization
-    - type: OpenAPI
-      url: openapi/pexels-openapi.yml
-    - type: NaftikoCapability
-      url: capabilities/pexels-collections.yaml
-    - type: NaftikoCapability
-      url: capabilities/pexels-photos.yaml
-    - type: NaftikoCapability
-      url: capabilities/pexels-videos.yaml
+      - type: Documentation
+        url: https://www.pexels.com/api/documentation/
+      - type: GettingStarted
+        url: https://www.pexels.com/api/
+      - type: Authentication
+        url: https://www.pexels.com/api/documentation/#authorization
+      - type: OpenAPI
+        url: openapi/pexels-openapi.yml
 common:
   - type: GitHubOrganization
     url: https://github.com/pexels
