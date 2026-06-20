@@ -4,7 +4,7 @@ description: >-
   Give your users access to the entire Pexels photo and video library without leaving your app or website. The Pexels
   API is free and seamlessly integrates with just a few lines of code.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Photos
   - Stock Media
