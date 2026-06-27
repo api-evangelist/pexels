@@ -41,7 +41,7 @@ common:
     url: https://www.pexels.com/api/
   - type: Documentation
     url: https://www.pexels.com/api/documentation/
-  - type: SignUp
+  - type: Signup
     url: https://www.pexels.com/api/
   - type: Website
     url: https://www.pexels.com/
