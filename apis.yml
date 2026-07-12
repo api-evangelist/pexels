@@ -33,6 +33,10 @@ apis:
       - type: OpenAPI
         url: openapi/pexels-openapi.yml
 common:
+  - type: DomainSecurity
+    url: security/pexels-domain-security.yml
+  - type: Authentication
+    url: authentication/pexels-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/pexels
   - type: LinkedIn

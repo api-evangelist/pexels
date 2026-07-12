@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/pexels-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: |-
+    Pexels uses an API-key in the `Authorization` request header.
+    Send your key as `Authorization: YOUR_API_KEY` on every request.
+  sources:
+  - openapi/pexels-openapi.yml
