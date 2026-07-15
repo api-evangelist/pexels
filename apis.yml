@@ -33,6 +33,8 @@ apis:
       - type: OpenAPI
         url: openapi/pexels-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/pexels-agentic-access.yml
   - type: DomainSecurity
     url: security/pexels-domain-security.yml
   - type: Authentication
