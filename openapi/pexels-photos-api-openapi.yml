@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: Pexels Collections Photos API
+  description: 'The Pexels API provides programmatic access to Pexels'' free stock photo
+
+    and video library, plus curated collections. Use it to search photos
+
+    and videos, fetch curated and popular media, and integrate Pexels
+
+    content into apps and websites.
+
+    '
+  version: '1.0'
+  contact:
+    name: Pexels API
+    url: https://www.pexels.com/api/
+  termsOfService: https://www.pexels.com/terms-of-service/
+servers:
+- url: https://api.pexels.com/v1
+  description: Pexels production API
+tags:
+- name: Photos
+  description: Search, browse, and retrieve photos.
+paths:
+  /search:
+    get:
+      operationId: searchPhotos
+      summary: Search Photos
+      description: Search the Pexels photo library by keyword.
+      tags:
+      - Photos
+      security:
+      - apiKeyAuth: []
+      parameters:
+      - in: query
+        name: query
+        required: true
+        schema:
+          type: string
+        description: Search keyword such as "Ocean" or "Tigers".
+      - in: query
+        name: orientation
+        schema:
+          type: string
+          enum:
+          - landscape
+          - portrait
+          - square
+      - in: query
+        name: size
+        schema:
+          type: string
+          enum:
+          - large
+          - medium
+          - small
+      - in: query
+        name: color
+        schema:
+          type: string
+      - in: query
+        name: locale
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+      - in: query
+        name: per_page
+        schema:
+          type: integer
+          default: 15
+          maximum: 80
+      responses:
+        '200':
+          description: Photo search results.
+  /curated:
+    get:
+      operationId: getCuratedPhotos
+      summary: Curated Photos
+      description: Returns real-time curated photos selected by Pexels.
+      tags:
+      - Photos
+      security:
+      - apiKeyAuth: []
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: integer
+      - in: query
+        name: per_page
+        schema:
+          type: integer
+          maximum: 80
+      responses:
+        '200':
+          description: Curated photos.
+  /photos/{id}:
+    get:
+      operationId: getPhoto
+      summary: Get Photo
+      description: Retrieve a specific photo by ID.
+      tags:
+      - Photos
+      security:
+      - apiKeyAuth: []
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A single photo resource.
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Pexels uses an API-key in the `Authorization` request header.
+
+        Send your key as `Authorization: YOUR_API_KEY` on every request.
+
+        '
+externalDocs:
+  description: Pexels API Documentation
+  url: https://www.pexels.com/api/documentation/

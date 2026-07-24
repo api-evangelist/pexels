@@ -1,0 +1,117 @@
+openapi: 3.1.0
+info:
+  title: Pexels Collections API
+  description: 'The Pexels API provides programmatic access to Pexels'' free stock photo
+
+    and video library, plus curated collections. Use it to search photos
+
+    and videos, fetch curated and popular media, and integrate Pexels
+
+    content into apps and websites.
+
+    '
+  version: '1.0'
+  contact:
+    name: Pexels API
+    url: https://www.pexels.com/api/
+  termsOfService: https://www.pexels.com/terms-of-service/
+servers:
+- url: https://api.pexels.com/v1
+  description: Pexels production API
+tags:
+- name: Collections
+  description: Browse featured and user-owned collections.
+paths:
+  /collections/featured:
+    get:
+      operationId: getFeaturedCollections
+      summary: Featured Collections
+      description: Returns curated public collections.
+      tags:
+      - Collections
+      security:
+      - apiKeyAuth: []
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: integer
+      - in: query
+        name: per_page
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Featured collections.
+  /collections:
+    get:
+      operationId: getMyCollections
+      summary: My Collections
+      description: Returns the authenticated user's collections.
+      tags:
+      - Collections
+      security:
+      - apiKeyAuth: []
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: integer
+      - in: query
+        name: per_page
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: User collections.
+  /collections/{id}:
+    get:
+      operationId: getCollectionMedia
+      summary: Collection Media
+      description: Returns photos and videos within a collection.
+      tags:
+      - Collections
+      security:
+      - apiKeyAuth: []
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: type
+        schema:
+          type: string
+          enum:
+          - photos
+          - videos
+      - in: query
+        name: sort
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          type: integer
+      - in: query
+        name: per_page
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Collection contents.
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Pexels uses an API-key in the `Authorization` request header.
+
+        Send your key as `Authorization: YOUR_API_KEY` on every request.
+
+        '
+externalDocs:
+  description: Pexels API Documentation
+  url: https://www.pexels.com/api/documentation/
