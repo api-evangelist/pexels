@@ -4,7 +4,20 @@ description: >-
   Give your users access to the entire Pexels photo and video library without leaving your app or website. The Pexels
   API is free and seamlessly integrates with just a few lines of code.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pexels.png
 tags:
   - Photos
   - Stock Media
@@ -14,24 +27,54 @@ created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: pexels:pexels-api
-    name: Pexels API
-    description: Free image and video API providing access to Pexels photo and video library for integration into applications.
-    humanURL: https://www.pexels.com/api/
-    baseURL: https://api.pexels.com/v1
-    tags:
-      - Photos
-      - Stock Media
-      - Videos
-    properties:
-      - type: Documentation
-        url: https://www.pexels.com/api/documentation/
-      - type: GettingStarted
-        url: https://www.pexels.com/api/
-      - type: Authentication
-        url: https://www.pexels.com/api/documentation/#authorization
-      - type: OpenAPI
-        url: openapi/pexels-openapi.yml
+- aid: pexels:pexels-collections-api
+  name: Pexels Collections API
+  description: Browse featured and user-owned collections.
+  humanURL: https://www.pexels.com/api/
+  baseURL: https://api.pexels.com/v1
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/pexels-collections-api-openapi.yml
+  - type: Documentation
+    url: https://www.pexels.com/api/documentation/
+  - type: GettingStarted
+    url: https://www.pexels.com/api/
+  - type: Authentication
+    url: https://www.pexels.com/api/documentation/#authorization
+- aid: pexels:pexels-photos-api
+  name: Pexels Photos API
+  description: Search, browse, and retrieve photos.
+  humanURL: https://www.pexels.com/api/
+  baseURL: https://api.pexels.com/v1
+  tags:
+  - Photos
+  properties:
+  - type: OpenAPI
+    url: openapi/pexels-photos-api-openapi.yml
+  - type: Documentation
+    url: https://www.pexels.com/api/documentation/
+  - type: GettingStarted
+    url: https://www.pexels.com/api/
+  - type: Authentication
+    url: https://www.pexels.com/api/documentation/#authorization
+- aid: pexels:pexels-videos-api
+  name: Pexels Videos API
+  description: Search, browse, and retrieve videos.
+  humanURL: https://www.pexels.com/api/
+  baseURL: https://api.pexels.com/v1
+  tags:
+  - Videos
+  properties:
+  - type: OpenAPI
+    url: openapi/pexels-videos-api-openapi.yml
+  - type: Documentation
+    url: https://www.pexels.com/api/documentation/
+  - type: GettingStarted
+    url: https://www.pexels.com/api/
+  - type: Authentication
+    url: https://www.pexels.com/api/documentation/#authorization
 common:
   - type: AgenticAccess
     url: agentic-access/pexels-agentic-access.yml
