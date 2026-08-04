@@ -1,0 +1,18 @@
+{
+  "provider": "pexels",
+  "sources": [
+    "pexels-collections-api-openapi.yml",
+    "pexels-photos-api-openapi.yml",
+    "pexels-videos-api-openapi.yml"
+  ],
+  "outputs": [
+    "pexels-collections-api-openapi.yml",
+    "pexels-photos-api-openapi.yml",
+    "pexels-videos-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
