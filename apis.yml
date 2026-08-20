@@ -33,6 +33,8 @@ apis:
   humanURL: https://www.pexels.com/api/
   baseURL: https://api.pexels.com/v1
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
