@@ -1,15 +1,13 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Pexels Collections Photos API
+  title: Pexels Photos API
   description: 'The Pexels API provides programmatic access to Pexels'' free stock photo
 
     and video library, plus curated collections. Use it to search photos
 
     and videos, fetch curated and popular media, and integrate Pexels
 
-    content into apps and websites.
-
-    '
+    content into apps and websites.'
   version: '1.0'
   contact:
     name: Pexels API
