@@ -97,6 +97,12 @@ apis:
   - type: Authentication
     url: https://www.pexels.com/api/documentation/#authorization
 common:
+  - type: Plans
+    url: plans/pexels-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/pexels-rate-limits.yml
+  - type: FinOps
+    url: finops/pexels-finops.yml
   - type: AgenticAccess
     url: agentic-access/pexels-agentic-access.yml
   - type: DomainSecurity
